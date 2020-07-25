@@ -5,6 +5,7 @@ from sys import exit
 from os import environ
 import boto3
 
+
 from difflib import unified_diff
 
 def save_to_dynamo(current_data, table):
@@ -19,7 +20,7 @@ def save_to_dynamo(current_data, table):
   ) 
 
 def get_from_dynamo(table):
-  return table.scan().get('Items')[0].get('details')
+  return table.get_item(Key={'id':1}).get('Item').get('details')
 
 
 def get_and_publish_stats():
